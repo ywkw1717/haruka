@@ -1,4 +1,8 @@
-package cube
+package rubik
+
+import (
+	"fmt"
+)
 
 const (
 	WHITE = iota
