@@ -98,8 +98,35 @@ func (cube *Cube) PrintState() {
 	fmt.Println("       -------                    ")
 }
 
+// from: dup, to: cube
+func baseRotation(from [][]int, to [][]int) {
+	to[0][2] = from[0][0]
+	to[2][2] = from[0][2]
+	to[2][0] = from[2][2]
+	to[0][0] = from[2][0]
+
+	to[1][2] = from[0][1]
+	to[2][1] = from[1][2]
+	to[1][0] = from[2][1]
+	to[0][1] = from[1][0]
+}
+
+func basePrimeRotation(from [][]int, to [][]int) {
+	to[2][0] = from[0][0]
+	to[2][2] = from[2][0]
+	to[0][2] = from[2][2]
+	to[0][0] = from[0][2]
+
+	to[1][0] = from[0][1]
+	to[2][1] = from[1][0]
+	to[1][2] = from[2][1]
+	to[0][1] = from[1][2]
+}
+
 func (cube *Cube) RRotation() {
 	dup := Copy(cube)
+
+	baseRotation(dup.R, cube.R)
 
 	cube.U[0][2] = dup.F[0][2]
 	cube.U[1][2] = dup.F[1][2]
@@ -120,6 +147,8 @@ func (cube *Cube) RRotation() {
 
 func (cube *Cube) RPrimeRotation() {
 	dup := Copy(cube)
+
+	basePrimeRotation(dup.R, cube.R)
 
 	cube.U[0][2] = dup.B[2][0]
 	cube.U[1][2] = dup.B[1][0]
@@ -145,6 +174,8 @@ func (cube *Cube) R2Rotation() {
 
 func (cube *Cube) LRotation() {
 	dup := Copy(cube)
+
+	baseRotation(dup.L, cube.L)
 
 	cube.U[0][0] = dup.B[2][2]
 	cube.U[1][0] = dup.B[1][2]
@@ -193,6 +224,8 @@ func (cube *Cube) L2Rotation() {
 func (cube *Cube) URotation() {
 	dup := Copy(cube)
 
+	baseRotation(dup.U, cube.U)
+
 	cube.F[0][0] = dup.R[0][0]
 	cube.F[0][1] = dup.R[0][1]
 	cube.F[0][2] = dup.R[0][2]
@@ -212,6 +245,8 @@ func (cube *Cube) URotation() {
 
 func (cube *Cube) UPrimeRotation() {
 	dup := Copy(cube)
+
+	basePrimeRotation(dup.U, cube.U)
 
 	cube.F[0][0] = dup.L[0][0]
 	cube.F[0][1] = dup.L[0][1]
@@ -238,6 +273,8 @@ func (cube *Cube) U2Rotation() {
 func (cube *Cube) DRotation() {
 	dup := Copy(cube)
 
+	baseRotation(dup.D, cube.D)
+
 	cube.F[2][0] = dup.L[2][0]
 	cube.F[2][1] = dup.L[2][1]
 	cube.F[2][2] = dup.L[2][2]
@@ -257,6 +294,8 @@ func (cube *Cube) DRotation() {
 
 func (cube *Cube) DPrimeRotation() {
 	dup := Copy(cube)
+
+	basePrimeRotation(dup.D, cube.D)
 
 	cube.F[2][0] = dup.R[2][0]
 	cube.F[2][1] = dup.R[2][1]
@@ -283,6 +322,8 @@ func (cube *Cube) D2Rotation() {
 func (cube *Cube) FRotation() {
 	dup := Copy(cube)
 
+	baseRotation(dup.F, cube.F)
+
 	cube.R[0][0] = dup.U[2][0]
 	cube.R[1][0] = dup.U[2][1]
 	cube.R[2][0] = dup.U[2][2]
@@ -302,6 +343,8 @@ func (cube *Cube) FRotation() {
 
 func (cube *Cube) FPrimeRotation() {
 	dup := Copy(cube)
+
+	basePrimeRotation(dup.F, cube.F)
 
 	cube.R[0][0] = dup.D[0][2]
 	cube.R[1][0] = dup.D[0][1]
@@ -328,6 +371,8 @@ func (cube *Cube) F2Rotation() {
 func (cube *Cube) BRotation() {
 	dup := Copy(cube)
 
+	baseRotation(dup.B, cube.B)
+
 	cube.R[0][2] = dup.D[2][2]
 	cube.R[1][2] = dup.D[2][1]
 	cube.R[2][2] = dup.D[2][0]
@@ -347,6 +392,8 @@ func (cube *Cube) BRotation() {
 
 func (cube *Cube) BPrimeRotation() {
 	dup := Copy(cube)
+
+	basePrimeRotation(dup.B, cube.B)
 
 	cube.R[0][2] = dup.U[0][0]
 	cube.R[1][2] = dup.U[0][1]
