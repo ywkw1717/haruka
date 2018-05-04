@@ -166,13 +166,15 @@ func (cube *Cube) LRotation() {
 func (cube *Cube) LPrimeRotation() {
 	dup := Copy(cube)
 
+	basePrimeRotation(dup.L, cube.L)
+
 	cube.U[0][0] = dup.F[0][0]
 	cube.U[1][0] = dup.F[1][0]
 	cube.U[2][0] = dup.F[2][0]
 
-	cube.F[0][0] = dup.D[2][0]
+	cube.F[0][0] = dup.D[0][0]
 	cube.F[1][0] = dup.D[1][0]
-	cube.F[2][0] = dup.D[0][0]
+	cube.F[2][0] = dup.D[2][0]
 
 	cube.D[2][0] = dup.B[0][2]
 	cube.D[1][0] = dup.B[1][2]
