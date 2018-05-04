@@ -41,7 +41,7 @@ func makeCubeData(color int) [][]int {
 	return data
 }
 
-func (cube *Cube) rRotation() {
+func (cube *Cube) RRotation() {
 	dup := Copy(cube)
 
 	cube.U[0][2] = dup.F[0][2]
@@ -61,7 +61,7 @@ func (cube *Cube) rRotation() {
 	cube.B[2][0] = dup.U[0][2]
 }
 
-func (cube *Cube) rPrimeRotation() {
+func (cube *Cube) RPrimeRotation() {
 	dup := Copy(cube)
 
 	cube.U[0][2] = dup.B[2][0]
@@ -81,9 +81,9 @@ func (cube *Cube) rPrimeRotation() {
 	cube.B[2][0] = dup.D[2][2]
 }
 
-func (cube *Cube) r2Rotation() {
-	cube.rRotation()
-	cube.rRotation()
+func (cube *Cube) R2Rotation() {
+	cube.RRotation()
+	cube.RRotation()
 }
 
 func Copy(cube *Cube) *Cube {
@@ -105,7 +105,7 @@ func deepCopyTwoDimensionalArray(from [][]int, to [][]int) {
 	}
 }
 
-func (cube *Cube) printState() {
+func (cube *Cube) PrintState() {
 	fmt.Println("       -------                    ")
 	fmt.Printf("       |%d|%d|%d|                    \n", cube.U[0][0], cube.U[0][1], cube.U[0][2])
 	fmt.Printf("       |%d|%d|%d|                    \n", cube.U[1][0], cube.U[1][1], cube.U[1][2])
