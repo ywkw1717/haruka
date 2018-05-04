@@ -129,13 +129,13 @@ func (cube *Cube) RPrimeRotation() {
 	cube.F[1][2] = dup.U[1][2]
 	cube.F[2][2] = dup.U[2][2]
 
-	cube.D[0][2] = dup.F[0][0]
-	cube.D[1][2] = dup.F[1][0]
-	cube.D[2][2] = dup.F[2][0]
+	cube.D[0][2] = dup.F[0][2]
+	cube.D[1][2] = dup.F[1][2]
+	cube.D[2][2] = dup.F[2][2]
 
-	cube.B[0][0] = dup.D[0][2]
+	cube.B[0][0] = dup.D[2][2]
 	cube.B[1][0] = dup.D[1][2]
-	cube.B[2][0] = dup.D[2][2]
+	cube.B[2][0] = dup.D[0][2]
 }
 
 func (cube *Cube) R2Rotation() {
