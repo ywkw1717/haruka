@@ -1,2 +1,2 @@
 # haruka
-rubik's cube
+The program about Rubik's Cube
