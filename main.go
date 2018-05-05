@@ -28,9 +28,8 @@ import (
 func main() {
 	cube := rubik.NewCube()
 
-	cube.RRotation()
-	cube.PrintState()
-
-	cube.RPrimeRotation()
-	cube.PrintState()
+	for i := 0; i < 6; i++ {
+		rubik.Rotation(cube, "U R' U' R")
+		cube.PrintState()
+	}
 }

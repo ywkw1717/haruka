@@ -2,6 +2,7 @@ package rubik
 
 import (
 	"fmt"
+	"strings"
 )
 
 const (
@@ -96,6 +97,35 @@ func (cube *Cube) PrintState() {
 	fmt.Printf("       |%d|%d|%d|                    \n", cube.D[2][0], cube.D[2][1], cube.D[2][2])
 
 	fmt.Println("       -------                    ")
+}
+
+var rotationMap map[string](func(*Cube)) = map[string](func(*Cube)){
+	"R":  (*Cube).RRotation,
+	"R'": (*Cube).RPrimeRotation,
+	"R2": (*Cube).R2Rotation,
+	"L":  (*Cube).LRotation,
+	"L'": (*Cube).LPrimeRotation,
+	"L2": (*Cube).L2Rotation,
+	"U":  (*Cube).URotation,
+	"U'": (*Cube).UPrimeRotation,
+	"U2": (*Cube).U2Rotation,
+	"D":  (*Cube).DRotation,
+	"D'": (*Cube).DPrimeRotation,
+	"D2": (*Cube).D2Rotation,
+	"F":  (*Cube).FRotation,
+	"F'": (*Cube).FPrimeRotation,
+	"F2": (*Cube).F2Rotation,
+	"B":  (*Cube).BRotation,
+	"B'": (*Cube).BPrimeRotation,
+	"B2": (*Cube).B2Rotation,
+}
+
+func Rotation(cube *Cube, s string) {
+	commands := strings.Split(s, " ")
+
+	for _, v := range commands {
+		rotationMap[v](cube)
+	}
 }
 
 // from: dup, to: cube
